@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee List</title>
+</head>
+<body>
+  <h1>Employee Data</h1>
+  <table border="1">
+    <tr>
+      <th>name</th><th>course</th><th>Role</th><th></th>
+    </tr>
+    <% student.forEach(function(emp) { %>
+      <tr>
+        <td><%= emp.nane %></td>
+        <td><%= emp.id %></td>
+        <td><%= emp.course %></td>
+      </tr>
+    <% }); %>
+    
+  </table>
+</body>
+</html>
