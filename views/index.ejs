@@ -12,7 +12,8 @@
         <th>Emal</th>
         <th>DatOfBirth</th>
         <th>Geneder</th>
-        <th>Nationality</th>
+        <th>designation</th>
+         <th>Edit</th>
         <th></th>
       </tr>
       <% emp.forEach(function(emp) { %>
@@ -20,9 +21,13 @@
         <td><%= emp.id %></td>
         <td><%= emp.name %></td>
         <td><%= emp.email %></td>
-        <td><%= emp.dob %></td>
+        <td><%= new Date(emp.dob).toLocaleDateString("en-IN") %></td>
         <td><%= emp.gender %></td>
         <td><%= emp.designation %></td>
+          <td>
+    <a href="/edit/<%= emp.id %>">Edit</a>
+  </td>
+
       </tr>
       <% }); %>
     </table>

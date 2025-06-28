@@ -14,9 +14,9 @@ router.get('/add',function(req,res){
   res.render("add")
 })
 router.post('/add',function(req,res){
-  const {id , name ,email , date , gender , nation} = req.body;
-  const sql = 'INSERT INTO empd (id, name,email,date,gender,designation) VALUES(?,?,?,?,?,?)';
-  con.query(sql,[id,name,email,date,gender,designation],(err,result)=>{
+  const {id , name ,email , dob , gender , designation} = req.body;
+  const sql = 'INSERT INTO empd (id, name,email,dob,gender,designation) VALUES(?,?,?,?,?,?)';
+  con.query(sql,[id,name,email,dob,gender,designation],(err,result)=>{
     if(err){
       console.error("Error inserting data:", err);
       return res.status(500).send("Database error");
