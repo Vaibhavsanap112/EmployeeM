@@ -7,8 +7,24 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/edit',function(req,res){
-  res.render("edit")
+router.get('/edit:id',function(req,res){
+  const id = req.params.id;
+
+  const query = 'SELECT * FROM employees WHERE id = ?';
+  con.query(query, [id], (err, result) => {
+    if (err) throw err;
+    res.render('edit', { emp: result[0] });
+  });
+  router.post('/edit/:id', (req, res) => {
+  const id = req.params.id;
+  const { name, email, dob, gender, designation } = req.body;
+
+  const query = 'UPDATE employees SET name=?, email=?, dob=?, gender=?, designation=? WHERE id=?';
+  con.query(query, [name, email, dob, gender, designation, id], (err, result) => {
+    if (err) throw err;
+    res.redirect('/');
+  });
+});
 })
 router.get('/add',function(req,res){
   res.render("add")

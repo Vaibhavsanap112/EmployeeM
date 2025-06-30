@@ -6,7 +6,20 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>This is Edit page</h1>
+ <form method="POST" action="/edit/<%= emp.id %>">
+  Name: <input type="text" name="name" value="<%= emp.name %>"><br>
+  Email: <input type="email" name="email" value="<%= emp.email %>"><br>
+  DOB: <input type="date" name="dob" value="<%= emp.dob.toISOString().slice(0, 10) %>"><br>
+  Gender:
+  <select name="gender">
+    <option value="Male" <%= emp.gender === 'Male' ? 'selected' : '' %>>Male</option>
+    <option value="Female" <%= emp.gender === 'Female' ? 'selected' : '' %>>Female</option>
+    <option value="Other" <%= emp.gender === 'Other' ? 'selected' : '' %>>Other</option>
+  </select><br>
+  Designation: <input type="text" name="designation" value="<%= emp.designation %>"><br>
+  <button type="submit">Update</button>
+</form>
+
   
 </body>
 </html>
