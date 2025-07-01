@@ -7,10 +7,10 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/edit:id',function(req,res){
+router.get('/edit/:id',function(req,res){
   const id = req.params.id;
 
-  const query = 'SELECT * FROM employees WHERE id = ?';
+  const query = 'SELECT * FROM empd WHERE id = ?';
   con.query(query, [id], (err, result) => {
     if (err) throw err;
     res.render('edit', { emp: result[0] });
@@ -19,7 +19,7 @@ router.get('/edit:id',function(req,res){
   const id = req.params.id;
   const { name, email, dob, gender, designation } = req.body;
 
-  const query = 'UPDATE employees SET name=?, email=?, dob=?, gender=?, designation=? WHERE id=?';
+  const query = 'UPDATE empd SET name=?, email=?, dob=?, gender=?, designation=? WHERE id=?';
   con.query(query, [name, email, dob, gender, designation, id], (err, result) => {
     if (err) throw err;
     res.redirect('/');
@@ -38,7 +38,7 @@ router.post('/add',function(req,res){
       return res.status(500).send("Database error");
 
     }
-    res.send("Employee added successfully");
+    res.redirect("/")
   })
 
 })
